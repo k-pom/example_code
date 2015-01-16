@@ -13,6 +13,12 @@ def to_long(string, base=10):
         characters.
     """
 
+    if type(base) != int:
+        raise TypeError("Unsupported type %s" % type(base))
+
+    if base < 2 or base > 16:
+        raise TypeError("Unsupported base %s" % base)
+
     # If it is anything other than a string, bail. Alternatively, we could
     # explicity cast it to a str if we wanted to try anyways.
     if type(string) != str:

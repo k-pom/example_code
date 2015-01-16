@@ -70,5 +70,13 @@ class TestTypecast(unittest.TestCase):
         with self.assertRaises(TypeError):
             self._test_cast(["123"])
 
+    def test_invalid_base(self):
+        with self.assertRaises(TypeError):
+            self._test_cast("123", 20)
+        with self.assertRaises(TypeError):
+            self._test_cast("123", 1)
+        with self.assertRaises(TypeError):
+            self._test_cast("123", "foo")
+
 if __name__ == '__main__':
     unittest.main()

@@ -15,7 +15,7 @@ value.
 This approach depends on having a mapping of characters to values, as seen at
 the bottom of [typecast.py](typecast.py).  
 
-The second assumption this approach makes is that all characters are numeric.
+The second assumption this approach makes is that all characters are numeric (or alphanumeric in the case of hex numbers).
 Strings such as 1,000 or 0.75 are invalid. There are, however, three exceptions
 explicitly handled. Hex notation, Python's Long notation, and the minus sign
 indicating a negative number

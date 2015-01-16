@@ -17,17 +17,17 @@ class TestTypecast(unittest.TestCase):
 
     def setUp(self):
         self.root = Node(5)
-        self.root.add(Node(4))
-        self.root.add(Node(9))
-        self.root.add(Node(5))
-        self.root.add(Node(7))
-        self.root.add(Node(2))
-        self.root.add(Node(2))
+        self.root.insert(Node(4))
+        self.root.insert(Node(9))
+        self.root.insert(Node(5))
+        self.root.insert(Node(7))
+        self.root.insert(Node(2))
+        self.root.insert(Node(2))
 
         # Adding some extra nodes beyond the example for testing
-        self.root.add(Node(3))
-        self.root.add(Node(8))
-        self.root.add(Node(4.5))
+        self.root.insert(Node(3))
+        self.root.insert(Node(8))
+        self.root.insert(Node(4.5))
 
     def test_happy_path(self):
         # Nodes are where they should be

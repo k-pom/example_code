@@ -9,7 +9,7 @@ class Node:
         self.right = None
         self.parent = None
 
-    def add(self, node):
+    def insert(self, node):
         """
             Entry pont for adding a node object to a tree. This method figures
             out which branch they belong on, and then sends it off to the
@@ -25,7 +25,7 @@ class Node:
         # Once we know where it goes, see if the slot is full. If it is, call
         # that nodes add. This goes on until we find an empty slot
         if getattr(self, side):
-            getattr(self, side).add(node)
+            getattr(self, side).insert(node)
         else:
             node.parent = self
             setattr(self, side, node)
@@ -68,9 +68,10 @@ class Node:
         # It's a leaf node. Just delete it from the parent. This one's easy
         if self.max_depth() == 1:
             setattr(self.parent, parent_side, None)
+            self.parent = None
 
-        # If it has a mid, just shift it mid up. A mid can't have left/right
-        # children to rebalance, so it becomes simple
+        # If it has a mid, just shift it mid up. A mid does not need to
+        # rebalance child nodes, so it becomes simple
         elif self.mid:
             setattr(self.parent, parent_side, self.mid)
             if self.left:
@@ -82,6 +83,7 @@ class Node:
             self.mid.parent = self.parent
             self.mid.left = self.left
             self.mid.right = self.right
+            self.parent = None
 
         # We have to pick a side now. If we can, pick the deepest, otherwise
         # we have to just pick one. It could be random, but for consistency
@@ -92,12 +94,12 @@ class Node:
             setattr(self.parent, parent_side, self.right)
             self.right.parent = self.parent
             if self.left:
-                self.right.add(self.left)
+                self.right.insert(self.left)
         else:
             setattr(self.parent, parent_side, self.left)
             self.left.parent = self.parent
             if self.right:
-                self.left.add(self.right)
+                self.left.insert(self.right)
 
     def print_tree(self):
         """
